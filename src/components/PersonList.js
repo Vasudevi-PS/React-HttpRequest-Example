@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import "../App.css";
 export default class PersonList extends React.Component {
   state = {
     persons: []
@@ -20,7 +20,7 @@ export default class PersonList extends React.Component {
         {
           this.state.persons
             .map(person =>
-              <li key={person.id}>{person.name}</li>
+              <li className="list" key={person.id}>{person.name}</li>
             )
         }
       </ul>

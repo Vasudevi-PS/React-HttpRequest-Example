@@ -1,40 +1,40 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-export default class PersonAdd extends React.Component {
-  state = {
-    name: ''
-  }
+const PersonAdd = () => {
+  const [name, setName] = useState("");
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  }
+  const handleChange = (event) => {
 
-  handleSubmit = event => {
+setName(event.target.value);
+   // this.setState({ name: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const user = {
-      name: this.state.name
+      name: name,
     };
 
-    axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-      .then(res => {
+    axios
+      .post(`https://jsonplaceholder.typicode.com/users`, { user })
+      .then((res) => {
         console.log(res);
         console.log(res.data);
-      })
-  }
+      });
+  };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Person Name:
-            <input type="text" name="name" onChange={this.handleChange} />
-          </label>
-          <button type="submit">Add</button>
-        </form>
-      </div>
-    )
-  }
-}
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Person Name:
+          <input type="text" name="name" onChange={handleChange} />
+        </label>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  );
+};
+export default PersonAdd;
